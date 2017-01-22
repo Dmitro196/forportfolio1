@@ -1,0 +1,476 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+  <title>Sales</title>
+  <script src="jquery-1.7.2.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/mainStyle.css">
+  <style>
+#slider-wrap{ /* Оболочка слайдера и кнопок */
+position:relativel
+	width:100%;
+min-height:185px;
+height:auto;
+overflow:visible;
+	}
+#slider{ /* Оболочка слайдера */
+	width:100%;
+	min-height:180px;
+	height:auto;
+	overflow: visible;
+	
+	position:relative;}
+.slide{ /* Слайд */
+	width:calc(100% - 4px);
+	min-height:180px;
+	height:auto;
+	overflow:auto;
+
+border:1px solid #404040;
+box-shadow: 1px -5px 5px 0px rgba(0,0,0,0.5);
+border-radius:15px;
+	
+transition:all 0;
+	}
+
+#prewbutton, #nextbutton{ /* Ссылка "Следующий" и "Педыдущий" */
+	display:block;
+	width:39px;
+	height:100%;
+	position:absolute;
+	top:0;
+	overflow:hidden;
+	text-indent:-999px;
+	background:url(arrowBg.png) left center no-repeat;
+	opacity:0.8;
+	z-index:3;
+	outline:none !important;}
+#prewbutton{left:-7px;}
+#nextbutton{
+	right:-5px;
+	background:url(arrowBg.png) right center no-repeat;}
+#prewbutton:hover, #nextbutton:hover{
+	opacity:1;}
+	
+	 
+</style>
+</head>
+
+<body bgcolor="white">
+<script>
+
+
+(function ($) {
+var hwSlideSpeed = 0;
+
+var hwNeedLinks = true;
+
+$(document).ready(function(e) {
+	$('.slide').css(
+		{"position" : "relative",
+		 "top":'0', "left": '0'}).hide().eq(0).show();
+	var slideNum = 0;
+	 
+	slideCount = $("#slider .slide").size();
+	var animSlide = function(arrow){
+		 
+		$('.slide').eq(slideNum).fadeOut(hwSlideSpeed);
+		if(arrow == "next"){
+			if(slideNum == (slideCount-1)){slideNum=0;}
+			else{slideNum++}
+			}
+		else if(arrow == "prew")
+		{
+			if(slideNum == 0){slideNum=slideCount-1;}
+			else{slideNum-=1}
+		}
+		else{
+			slideNum = arrow;
+			}
+		$('.slide').eq(slideNum).fadeIn(hwSlideSpeed, rotator);
+		$(".control-slide.active").removeClass("active");
+		$('.control-slide').eq(slideNum).addClass('active');
+		}
+if(hwNeedLinks){
+var $linkArrow = $('<a id="prewbutton" href="#">&lt;</a><a id="nextbutton" href="#">&gt;</a>')
+	.prependTo('#slider');		
+	$('#nextbutton').click(function(){
+		animSlide("next");
+		return false;
+		})
+	$('#prewbutton').click(function(){
+		animSlide("prew");
+		return false;
+		})
+}
+	var $adderSpan = '';
+	$('.slide').each(function(index) {
+			$adderSpan += '<span class = "control-slide">' + index + '</span>';
+		});
+	//$('<div class ="sli-links">' + $adderSpan +'</div>').appendTo('#slider-wrap');
+	$(".control-slide:first").addClass("active");
+	$('.control-slide').click(function(){
+	var goToNum = parseFloat($(this).text());
+	animSlide(goToNum);
+	});
+	var pause = false;
+	var rotator = function(){
+			
+			}
+	
+});
+})(jQuery);
+
+</script>
+	<div id="header">
+		<div class="headcontacts">
+			<ul>
+				 <li><a href="images/Phone.png">Acount Sign In</a></li>
+				<li class="dot"></li>
+				<li><a href="#">Register</a></li>
+				<li class="dot"></li>
+				<li><a href="#">Buyers Gide</a></li>
+				<li class="dot"></li>
+				<li><a href="#">About</a></li>
+				<li class="dot"></li>
+				<li><a href="#">Blog</a></li>
+				<li class="dot"></li>
+				<li><a href="#">Contacts</a></li> 
+			</ul>
+	
+	
+	
+		<div class="USA">
+		
+		</div>
+		<div class="Canada">
+		
+		</div >
+			<div class="messages">
+		 <a href="#"></p>Live Help</p></a>
+		</div>
+			<div class="phone">
+		 <p>123.456.7890</p>
+		</div>
+			</div>
+			
+			<div class="headercontent2">
+				
+				<div class="bag">
+				
+					<p id="items">0 Items in Your Bag</p>
+					<div id="CheckOut" ><a href="#">Check Out</a></div>
+				</div>
+				
+				<div class="SearchWebsite"><form>
+					<input type="text" class="inputtext" placeholder="Search website">
+					<div type="button" class="inputbuton" onclick="clickFunction()"><p>GO</p></div>
+					</form>
+				</div>
+				
+				<div class="Ecomerce">
+				ECOMMERCE<br>
+				WEBSITE
+				</div>
+				
+			</div>
+			<div class="headerUl">
+				<ul>
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">LATEST ARRIVALS</a></li>
+				<li><a href="#">MENS</a></li>
+				<li><a href="#">WOMENS</a></li>
+				<li><a href="#">BRANDS</a></li>
+				<li><a href="#">SALE</a></li>
+				<li><a href="#">GIFT CARDS</a></li>
+				<li><a href="#">FREEBIES</a></li>
+				</ul>
+				
+			</div>
+    </div> <!-- header -->
+  <div id="wrap">
+		<div class="wraphead">
+			 <h2 class="wrapTitle">Festival Offer<h2>
+			 <a href="#" class="wrapHref">SALE</a>
+				<div class="ProductTitle">
+				<h3>product title</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras suscipit lacus dapibus ante mattis in adipiscing nibh placerat. Cras bibendum porta diam, non dignissim sapien malesuada vitae. </p>
+			
+			</div>
+		</div>
+
+	 <div class="leftcolumn">
+		<div class="categories"><h3>Browse Categories</h3>
+			<div class="categoriesUL">
+				<ul>
+					<li><a href="#">Lorem ipsum dolor sit </a></li>
+					
+					<li><a href="#">Amet consectetur  </a></li>
+					<li><a href="#">Adipiscin elit  </a></li>
+					<li><a href="#">Cras suscipit lacus  </a></li>
+					<li><a href="#">Dapibus ante mattis  </a></li>
+					<li><a href="#">Adipiscing nibh placerat </a></li>
+					<li><a href="#">Cras bibendum  </a></li>
+					<li><a href="#">Porta diam elit</a></li>
+					<li><a href="#">Adipiscing nibh placerat </a></li>
+					<li><a href="#">Cras bibendum  </a></li>
+					<li><a href="#">Porta diam elit</a></li>
+				</ul>
+			
+			</div>
+		</div>
+			<div class="JoinForm">
+				<p>Join our newsletter list to get the latest updates</p>
+				<input type="text" class="JoinTextform">
+				<input type="button" class="JoinButton" value="Join Now">
+				
+				<div class="network" id="twitter">
+					<a href="#">Follow us on Twitter</a>
+				</div>
+				<div class="network" id="facebook">
+					<a href="#">Become our fan on Facebook</a>
+				</div>
+				<div class="network" id="in">
+					<a href="#">Connect with us on LinkedIn</a>
+				</div>
+				<div class="network" id="mail">
+					<a href="#">Send us your email enquiries</a>
+				</div>
+			</div>
+			
+			<div class="Pay">
+			</div>
+		
+	 </div><!--leftcolumn-->
+  
+	<div class="content">
+		<div class="contentcontrolPanel">
+			<div class="productinfo">
+				<p>Sort by:</p>
+				<select name="cars" class="Asending">
+					<option value="volvo">Asending</option>
+					<option value="saab">Saab</option>
+					<option value="fiat">Fiat</option>
+					<option value="audi">Audi</option>
+				</select>
+				<select name="cars" class="Product Name">
+					<option value="volvo">Product Name</option>
+					<option value="saab">Saab</option>
+					<option value="fiat">Fiat</option>
+					<option value="audi">Audi</option>
+				</select>
+				<select name="cars" class="Brand Name" >
+					<option value="volvo">Brand Name</option>
+					<option value="saab">Saab</option>
+					<option value="fiat">Fiat</option>
+					<option value="audi">Audi</option>
+				</select>
+				
+				
+				
+				
+			</div>
+			<div class="itempage">
+			
+					<p>Items per page:<span>12 </span>/<span>20 </span>/<span>30 </span>/<span>50 </span></p>
+			</div>
+			
+			
+		</div>
+		<div class="OurProducts"><h3>OUR PRODUCTS</h3>
+			<div class="product" id="product01">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product02">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product03">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product04">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product05">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product06">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product07">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product08">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product09">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product10">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product11">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="product" id="product12">
+				<h3>Product Name</h3>
+				<p>Price: <span>$12.99</span></p>
+				<a href="#"><p>product</p></a>
+			</div>
+			<div class="cleaner"></div>
+			<div class="ProductNavigation">
+					<ul>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">Next > </a></li>
+						<li><a href="#">Last >></a></li>
+					</ul>
+				
+			</div>
+		</div>
+		<h3 class="cleaner">FEATURE PRODUCTS</h3>
+		<div class="featureproductsSlider">
+			<div id="slider-wrap">
+	<div id="slider">
+
+	
+		<div class="slide" >
+		
+			<div class="featureproduct  leftFeature" id="featureproduct1">
+			<p>Elegant MP3 player skin PSD download</p>
+			</div>
+			
+			
+			<div class="featureproduct"id="featureproduct2"><p>Download shopping bag & icons (PSD & PNG)</p></div>
+			<div class="featureproduct rightish"id="featureproduct3"><p>High resolution abstract bokeh background</p></div>
+		
+		</div>
+		<div class="slide">
+		
+		
+		
+		</div>
+		<div class="slide"> <div class="featureproduct  leftFeature" id="featureproduct1">
+			<p>Elegant MP3 player skin PSD download</p>
+			</div></div>
+		<div class="slide"><div class="featureproduct"id="featureproduct2"><p>Download shopping bag & icons (PSD & PNG)</p></div>
+			</div>
+	</div>
+</div>
+		
+		
+		</div>
+    </div> <!-- content -->
+	 
+	
+	 <div class="cleaner"></div>
+  </div>
+  <div id="footer">
+    <div id="footercontent">
+			<div class="footernavigation">
+			<div class="secured">
+				<p>Shop online with us safely & securely</p>
+			</div>
+			<div class="box">
+			<p>We ship your orders anywhere!</p>
+			</div>
+				<div class="SearchWebsite">
+					<form>
+					<input type="text" class="inputtext" placeholder="Search website">
+					<div type="button" class="inputbuton" onclick="clickFunction()" ><p>GO</p></div>
+					</form>
+				</div>
+			</div>
+			<div class="footerlists">
+				<ul>
+					<li class="title">Companie</li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About Us</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Latest News</a></li>
+					<li><a href="#">Login</a></li>
+					<li><a href="#">Join Us</a></li>
+				</ul>
+			
+			</div>
+			<div class="footerlists">
+				<ul>
+					<li class="title">Categories</li>
+					<li><a href="#">Lorem ipsum dolor sit</a></li>
+					<li><a href="#">Amet consectetur</a></li>
+					<li><a href="#">Adipiscin elit</a></li>
+					<li><a href="#">Cras suscipit lacus </a></li>
+					<li><a href="#">Dapibus ante mattis </a></li>
+					<li><a href="#">Adipiscing nibh placerat</a></li>
+				</ul>
+			
+			</div>
+			<div class="footerlists">
+				<ul>
+					<li class="title">Information</li>
+					<li><a href="#">My Account</a></li>
+					<li><a href="#">Rewards</a></li>
+					<li><a href="#">Terms & Conditions</a></li>
+					<li><a href="#">Buying Guide</a></li>
+					<li><a href="#">FAQ</a></li>
+				</ul>
+			
+			</div>
+			<div class="footerlists">
+				<ul>
+					<li class="title">Social Network</li>
+					<li><a href="#">My Account</a></li>
+					<li><a href="#">Rewards</a></li>
+					<li><a href="#">Terms & Conditions</a></li>
+					<li><a href="#">Buying Guide</a></li>
+					<li><a href="#">FAQ</a></li>
+				</ul>
+			
+			</div>
+			
+			<div class="footerlists rightish" >
+				<ul>
+					<li class="title">Contat Us</li>
+					<li class="mailcontact"><p>Phone: 1.234.567.8901</p></li>
+					<li class="mailcontact"><p>Toll-Free: 1.234.567.8901</p></li>
+					<li class="mailcontact"><p>Fax: 1.234.567.8901</p></li>
+					
+					<li class="mailcontact"><p>Email: </p><a href="#" ><p>Send us an email</p></a></li>
+					<li class="dateinfo">MON - SAT 	9am to 7:30pm
+Sundays, holidays closed</li>
+				</ul>
+			
+			</div>
+			
+    </div> <!-- footercontent -->
+  </div> <!-- footer -->
+  <script>
+  function clickFunction()
+  {alert("");}
+  </script>
+</body>
+</html>
